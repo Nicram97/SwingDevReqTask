@@ -1,0 +1,12 @@
+# Exclude all by default
+*
+
+# Add exceptions
+!src
+
+!package.json
+!package-lock.json
+
+!tsconfig.*
+
+!nodemon.json

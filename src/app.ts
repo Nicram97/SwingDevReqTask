@@ -27,6 +27,6 @@ app.use('*', (req: express.Request, res: express.Response) => {
 // tslint:disable-next-line:no-any
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   res
-    .status(500)
+    .status(err?.statusCode || 500)
     .send(err.message ? err.message : err)
 })

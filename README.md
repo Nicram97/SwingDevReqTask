@@ -1,3 +1,6 @@
+# Refactor branch
+Done just for practice + fun, after actual live coding :D
+
 # SwingDev Backend Interview
 Hello and welcome to your SwingDev backend interview assignment!
 

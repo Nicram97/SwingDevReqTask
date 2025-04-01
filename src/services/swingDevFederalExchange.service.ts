@@ -1,5 +1,6 @@
-import { currency, GetCurrencyRate } from "../dto/getCurrency";
-import { Exchange } from "../interfaces/exchange";
+import { CommonCurrency } from "../@types/commonCurrency";
+import { IGetCurrencyRate } from "../@types/getCurrencyRate.interface";
+import { Exchange } from "../@types/exchange";
 import axios from "axios";
 
 export class SwingDevFederalExchangeService implements Exchange {
@@ -9,16 +10,16 @@ export class SwingDevFederalExchangeService implements Exchange {
     this.url = url;
   }
 
-  async getExchangeRates(base: currency, target: currency) {
+  async getExchangeRates(base: CommonCurrency, target: CommonCurrency) {
     try {
-    const url = `${this.url}/rates/?base=${base}&target=${target}`;
-    const result = await axios.get(url);
+      const url = `${this.url}/rates/?base=${base}&target=${target}`;
+      const result = await axios.get(url);
 
-    const response = result.data as GetCurrencyRate;
+      const response = result.data as IGetCurrencyRate;
 
-    return response
-    } catch(e) {
-        throw new Error(e.message || 'Unknow error');
+      return response;
+    } catch (e) {
+      throw new Error(e.message || "Unknow error");
     }
   }
 }

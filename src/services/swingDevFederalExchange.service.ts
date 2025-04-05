@@ -19,7 +19,7 @@ export class SwingDevFederalExchangeService implements Exchange {
 
       return response;
     } catch (e) {
-      throw new Error(e.message || "Unknow error");
+      throw new Error(e.message || "Couldn't extract data from Federal Exchange");
     }
   }
 }

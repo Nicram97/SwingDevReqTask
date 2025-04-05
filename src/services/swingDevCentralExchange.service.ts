@@ -57,7 +57,7 @@ export class SwingDevCentralExchangeService implements Exchange {
 
       return response;
     } catch (e) {
-      throw new Error(e.message || "Unknow error");
+      throw new Error(e.message || "Couldn't get data from Central Exchange");
     }
   }
 }

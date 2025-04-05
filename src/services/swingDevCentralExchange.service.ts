@@ -1,4 +1,4 @@
-import { Exchange } from "../@types/exchange";
+import { IExchange } from "../@types/exchange";
 import axios from "axios";
 import { getProperty } from "../utils/common.helpers";
 import {
@@ -11,7 +11,7 @@ import {
   IGetCurrencyRateCentral,
 } from "../@types/getCurrencyRate.interface";
 
-export class SwingDevCentralExchangeService implements Exchange {
+export class SwingDevCentralExchangeService implements IExchange {
   private url: string;
   // check and validate url
   constructor(url: string) {

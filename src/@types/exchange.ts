@@ -1,7 +1,7 @@
 import { CommonCurrency } from "./commonCurrency";
 import { IGetCurrencyRate } from "./getCurrencyRate.interface";
 
-export interface Exchange {
+export interface IExchange {
   getExchangeRates: (
     base: CommonCurrency,
     target: CommonCurrency

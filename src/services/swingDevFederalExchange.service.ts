@@ -1,9 +1,9 @@
 import { CommonCurrency } from "../@types/commonCurrency";
 import { IGetCurrencyRate } from "../@types/getCurrencyRate.interface";
-import { Exchange } from "../@types/exchange";
+import { IExchange } from "../@types/exchange";
 import axios from "axios";
 
-export class SwingDevFederalExchangeService implements Exchange {
+export class SwingDevFederalExchangeService implements IExchange {
   private url: string;
   // check and validate url
   constructor(url: string) {
@@ -19,7 +19,9 @@ export class SwingDevFederalExchangeService implements Exchange {
 
       return response;
     } catch (e) {
-      throw new Error(e.message || "Couldn't extract data from Federal Exchange");
+      throw new Error(
+        e.message || "Couldn't extract data from Federal Exchange"
+      );
     }
   }
 }

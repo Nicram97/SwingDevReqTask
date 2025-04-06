@@ -1,5 +1,5 @@
 import { IExchange } from "../@types/exchange";
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import { getProperty } from "../utils/common.helpers";
 import {
   CentralCurrency,
@@ -10,6 +10,8 @@ import {
   IGetCurrencyRate,
   IGetCurrencyRateCentral,
 } from "../@types/getCurrencyRate.interface";
+import { ApiError } from "../errors/apiError";
+import { AppError } from "../errors/appError";
 
 export class SwingDevCentralExchangeService implements IExchange {
   private url: string;
@@ -57,7 +59,15 @@ export class SwingDevCentralExchangeService implements IExchange {
 
       return response;
     } catch (e) {
-      throw new Error(e.message || "Couldn't get data from Central Exchange");
+      if (isAxiosError(e)) {
+        throw new ApiError(
+          `Central Exchange Api failed: ${e.message}`,
+          e.status
+        );
+      }
+      throw new AppError(
+        e.message || "Couldn't get data from Central Exchange"
+      );
     }
   }
 }

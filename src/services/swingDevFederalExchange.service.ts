@@ -1,7 +1,9 @@
 import { CommonCurrency } from "../@types/commonCurrency";
 import { IGetCurrencyRate } from "../@types/getCurrencyRate.interface";
 import { IExchange } from "../@types/exchange";
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
+import { ApiError } from "../errors/apiError";
+import { AppError } from "../errors/appError";
 
 export class SwingDevFederalExchangeService implements IExchange {
   private url: string;
@@ -19,8 +21,14 @@ export class SwingDevFederalExchangeService implements IExchange {
 
       return response;
     } catch (e) {
-      throw new Error(
-        e.message || "Couldn't extract data from Federal Exchange"
+      if (isAxiosError(e)) {
+        throw new ApiError(
+          `Federal Exchange Api failed: ${e.message}`,
+          e.status
+        );
+      }
+      throw new AppError(
+        e.message || "Couldn't get data from Central Exchange"
       );
     }
   }

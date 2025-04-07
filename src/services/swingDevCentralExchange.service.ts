@@ -54,12 +54,13 @@ export class SwingDevCentralExchangeService implements IExchange {
       const response = {
         base,
         target,
-        rate: calcRate,
+        rate: Math.round((calcRate + Number.EPSILON) * 100) / 100,
         timestamp: responseApi.time,
       } as IGetCurrencyRate;
 
       return response;
     } catch (e) {
+      console.error(`Central Exchange error: ${e.message}`);
       return handleApiError(
         e,
         "Central Exchange Api failed",

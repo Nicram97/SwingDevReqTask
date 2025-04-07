@@ -1,6 +1,6 @@
 import envVar from "env-var";
 import { IConfig } from "../@types/config.interface";
-import { SWING_CENTRAL_API } from "../utils/constants";
+import { SWING_CENTRAL_API, SWING_FEDERAL_API } from "../utils/constants";
 
 export const createConfig = (): IConfig => {
   return {
@@ -11,7 +11,7 @@ export const createConfig = (): IConfig => {
       .asString(),
     FEDERAL_EXCHANGE_URL: envVar
       .get("FEDERAL_EXCHANGE_URL")
-      .default(SWING_CENTRAL_API)
+      .default(SWING_FEDERAL_API)
       .asString(),
     INCOMING_HTTP_TIMEOUT: envVar
       .get("INCOMING_HTTP_TIMEOUT")

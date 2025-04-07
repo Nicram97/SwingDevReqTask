@@ -4,6 +4,7 @@ import { IExchange } from "../@types/exchange";
 import axios from "axios";
 import { config } from "../config/config";
 import { handleApiError } from "../utils/commonError.helpers";
+import * as QueryString from 'node:querystring';
 
 export class SwingDevFederalExchangeService implements IExchange {
   private url: string;
@@ -14,7 +15,8 @@ export class SwingDevFederalExchangeService implements IExchange {
 
   async getExchangeRates(base: CommonCurrency, target: CommonCurrency) {
     try {
-      const url = `${this.url}/rates/?base=${base}&target=${target}`;
+      const queryStr = QueryString.encode({ base, target});
+      const url = `${this.url}/rates/?${queryStr}`;
       const result = await axios.get(url, {
         timeout: config.OUTGOING_HTTP_TIMEOUT,
       });
@@ -23,6 +25,7 @@ export class SwingDevFederalExchangeService implements IExchange {
 
       return response;
     } catch (e) {
+      console.error(`Federal Exchange error: ${e.message}`);
       return handleApiError(
         e,
         "Federal Exchange Api failed",

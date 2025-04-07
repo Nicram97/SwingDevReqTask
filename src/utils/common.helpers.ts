@@ -43,8 +43,7 @@ export const sendRequestWithFailover = async (
 
       // If we've tried all services, throw an error
       if (currentServiceIndex === initialServiceIndex) {
-        // possible feature introduce distinguish between error and axios error if it would be an axios error throw dedicated Error (ApiError)
-        throw new Error("All available 3rd party exchanges failed");
+        throw error;
       }
     }
   }

@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { NextFunction, Request, Response, Router } from "express";
 import { SwingDevFederalExchangeService } from "../../services/swingDevFederalExchange.service";
-import { SWING_CENTRAL_API, SWING_FEDERAL_API } from "../../utils/constants";
 import { SwingDevCentralExchangeService } from "../../services/swingDevCentralExchange.service";
 import { CommonCurrency } from "../../@types/commonCurrency";
 import { queryParamsValidator } from "../../middleware/queryParamsValidator";
 import { BaseTargetQueryDto } from "../../dto/baseTargetQuery.dto";
 import { sendRequestWithFailover } from "../../utils/common.helpers";
+import { config } from "../../config/config";
 
 export const routes: Router = Router();
 const federalExchangeService = new SwingDevFederalExchangeService(
-  SWING_FEDERAL_API
+  config.FEDERAL_EXCHANGE_URL
 );
 const centralExchangeService = new SwingDevCentralExchangeService(
-  SWING_CENTRAL_API
+  config.CENTRAL_EXCHANGE_URL
 );
 
 // if more complicated setup would be required we could have proper type and objects in this array to pass it into "sendRequestWithFailover"

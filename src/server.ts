@@ -1,13 +1,14 @@
-import envVar from "env-var";
 import { createApp } from "./app";
+import { config } from "./config/config";
 
 function main() {
   const app = createApp();
 
-  const port: number = envVar.get("PORT").default("8080").asInt();
-  app.listen(port, () => {
-    console.info(`API server started on port ${port}`);
+  const server = app.listen(config.PORT, () => {
+    console.info(`API server started on port ${config.PORT}`);
   });
+
+  server.requestTimeout = config.INCOMING_HTTP_TIMEOUT;
 }
 
 main();

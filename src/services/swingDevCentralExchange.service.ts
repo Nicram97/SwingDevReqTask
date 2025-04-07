@@ -1,4 +1,4 @@
-import { IExchange } from "../@types/exchange";
+import { IExchange } from "../@types/exchange.interface";
 import axios from "axios";
 import { getProperty } from "../utils/common.helpers";
 import {

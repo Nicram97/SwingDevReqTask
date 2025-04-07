@@ -1,4 +1,4 @@
-import { IExchange } from "../@types/exchange";
+import { IExchange } from "../@types/exchange.interface";
 import { IGetCurrencyRate } from "../@types/getCurrencyRate.interface";
 import { CommonCurrency } from "../@types/commonCurrency";
 
